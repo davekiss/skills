@@ -17,15 +17,23 @@ To check availability, run `check.mjs <domains…>` from this skill's directory 
    - **Swap the anchor word**: keep the suffix the user likes and replace the prefix (or the reverse).
    - **Exact name variants**: `the…`, `get…`, plural `…s…`, and other TLDs (.ai, .co, .io) when the .com is taken.
 
-   After each round, show only what's open, grouped by what the name *means*, with a short pick and a reason. Drop forced or too-cute names, names that mean something else to the audience, and obvious collisions with known companies (for example Deputy or Envoy), and say why. Done when the user names a direction or a finalist.
+   After each round, show only what's open, as one ranked table, best first. Use the step 3 criteria to give each name a quick letter grade, and say in the "Why" column what moved it up or down:
 
-3. **Grade finalists in real use.** Put each finalist into the step-1 example and score it in a table:
+   | # | Domain | Grade | Price | Direction | Why |
+   |---|--------|-------|-------|-----------|-----|
+   | 1 | grangerroadauto.com | A | $10.46/yr | Road name | Short, says what the shop does, survives the phone |
+   | 2 | grangerautomotive.com | B+ | $10.46/yr | Short brand | Clean, but "Granger Auto" is taken elsewhere, so check for collisions |
+   | 3 | grangerroadautomotive.com | B | $10.46/yr | Road name | Clear but long to type |
+
+   Rank by grade first. Among equal grades, rank shorter and cheaper names higher. The Direction column groups names by what they *mean*, so the user can steer by direction. Under the table, name your top pick in one line. Drop forced or too-cute names, names that mean something else to the audience, and obvious collisions with known companies (for example Deputy or Envoy). List the dropped names in one line with the reason. Done when the user names a direction or a finalist.
+
+3. **Grade finalists in real use.** Put each finalist into the step-1 example and score it in a table with one column per criterion (✓, ~ or ✗), a letter grade, the price, and a one-line reason:
    - **Self-identifying**: does the reader the address is for (for example an AI agent) know it's meant for them from the words alone?
    - **Counter test**: can someone say it aloud once, across a counter or on the phone, and be understood without spelling it out?
    - **Spelling**: is there only one obvious way to type it? Watch for words that run together (`agentsentrance`) and plurals that get lost when spoken.
    - **Trust**: does the TLD fit the audience? .com is safest for small businesses; .ai is normal for AI products. TLD matters less than the name.
 
-   Give a letter grade and one recommendation. Done when every finalist has a row.
+   Grade on this scale: **A** passes all four; **B** has one soft spot (~); **C** fails one (✗); **D** fails two or more. Add + or − to break ties. Sort the rows by grade, then give one recommendation. Done when every finalist has a row.
 
 4. **Compare prices** if the user asks: `vercel domains price <domain…>` (if the user has the Vercel CLI) against the Cloudflare price from `check.mjs`. Note term minimums: .ai is a 2-year minimum, so the first charge is double the yearly price.
 
@@ -40,5 +48,6 @@ To check availability, run `check.mjs <domains…>` from this skill's directory 
 ## Traps
 
 - Searching for a name before step 1 produces names graded on sound alone. The real use is what separates finalists.
+- Don't present open domains as a bulleted list. Every round and every finalist set goes in a ranked table with grade, price and reason.
 - Don't present the full list of taken domains. Say which directions are exhausted in one line, then move on.
 - Availability isn't trademark clearance. Say so when recommending, and offer a separate check.
