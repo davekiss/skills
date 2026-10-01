@@ -27,7 +27,7 @@ To check availability, run `check.mjs <domains…>` from this skill's directory 
 
    Give a letter grade and one recommendation. Done when every finalist has a row.
 
-4. **Compare prices** if the user asks: `vercel domains price <domain…>` against the Cloudflare price from `check.sh`. Note term minimums: .ai is a 2-year minimum, so the first charge is double the yearly price.
+4. **Compare prices** if the user asks: `vercel domains price <domain…>` (if the user has the Vercel CLI) against the Cloudflare price from `check.mjs`. Note term minimums: .ai is a 2-year minimum, so the first charge is double the yearly price.
 
 5. **Register only on an explicit go.** Registration is billable and non-refundable.
    1. Run `npx -y cf@latest registrar registrations create <domain> --dry-run` and tell the user the term and total cost.
